@@ -1,19 +1,22 @@
-var gulp = require('gulp');
-var browserify = require('browserify');
-var watchify = require('watchify');
-var babelify = require('babelify');
-var source = require('vinyl-source-stream');
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
+import gulp from 'gulp';
+import browserify from 'browserify';
+import watchify from 'watchify';
+import babelify from 'babelify';
+import source from 'vinyl-source-stream';
+import browserSync from 'browser-sync';
+let reload = browserSync.reload;
+import babel from 'gulp-babel';
+import concat from 'gulp-concat';
+import jasmine from 'gulp-jasmine';
 
-var config = {
+const config = {
   entryFile: './src/app.js',
   outputDir: './dist/',
   outputFile: 'app.js',
   baseDir: './'
 };
 
-var bundler;
+let bundler;
 function getBundler() {
   if (!bundler) {
     bundler = watchify(browserify(config.entryFile, watchify.args));
@@ -21,7 +24,7 @@ function getBundler() {
   return bundler;
 }
 
-function bundle() {
+function bundle()  {
   return getBundler()
     .transform(babelify)
     .bundle()
@@ -30,23 +33,31 @@ function bundle() {
     .pipe(gulp.dest(config.outputDir));
 }
 
-gulp.task('build-persistant', function() {
-  return bundle();
-});
+gulp.task('build-persistant', () => { bundle(); });
 
-gulp.task('build', ['build-persistant'], function() {
-  process.exit(0);
-});
+gulp.task('build', ['build-persistant'], () => { process.exit(0); });
 
-gulp.task('watch', ['build-persistant'], function() {
+gulp.task('watch', ['build-persistant'], () => {
   browserSync({
     server: {
       baseDir: config.baseDir
     }
   });
   
-  getBundler().on('update', function() {
+  getBundler().on('update', () => {
     gulp.start('build-persistant');
   });
 
 });
+
+gulp.task('js-exporter', () => {
+  gulp.src('src/*.js')
+    .pipe(babel())
+    .pipe(concat('app2.js'))
+    .pipe(gulp.dest('./dist'));
+  });
+
+gulp.task('jasmine', ['js-exporter'], () => {
+  gulp.src('spec/unit/*.js')
+    .pipe(jasmine());
+  });

@@ -1,2 +1,4 @@
 var angular = require('angular');
-console.log(`hello`, angular);
+var meatling = angular.module('meatlingApp', []);
+
+require('./main.js');
