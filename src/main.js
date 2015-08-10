@@ -1,3 +1,6 @@
-var app = require('angular').module('meatlingApp');
+var app = angular.module('meatlingApp');
+var UserController = require('./controllers/users.controller');
 
-app.service('UserListService', require('./services/feature.users'));
+app.service('User', require('./services/users.service'));
+app.controller('UserController', UserController);
+

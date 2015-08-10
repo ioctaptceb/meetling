@@ -7,8 +7,10 @@ module.exports = function(config) {
       'node_modules/angular/angular.js',
       'node_modules/angular-route/angular-route.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'src/controllers.js',
-      'spec/unit/controllersSpec.js'
+      'dist/app.js',
+      'spec/unit/usersServiceSpec.js',
+      'spec/unit/usersControllerSpec.js',
+      'spec/unit/usersDirectiveSpec.js'
         ],
 
     autowatch: true,
@@ -21,9 +23,10 @@ module.exports = function(config) {
 
     frameworks: ['jasmine'],
 
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     plugins: ['karma-chrome-launcher',
+              'karma-phantomjs-launcher',
               'karma-jasmine',
               'karma-junit-reporter'
               ],

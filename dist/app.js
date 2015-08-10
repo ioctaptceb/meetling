@@ -28375,22 +28375,39 @@ var meatling = angular.module('meatlingApp', []);
 
 require('./main.js');
 
-},{"./main.js":4,"angular":2}],4:[function(require,module,exports){
+},{"./main.js":5,"angular":2}],4:[function(require,module,exports){
 'use strict';
 
-var app = require('angular').module('meatlingApp');
+function UserController(User) {
+  var vm = this;
+  vm.name = {};
+  vm.user = new User('aviv', 'ADT');
+}
 
-app.service('UserListService', require('./services/feature.users'));
+UserController.$inject = ['User'];
 
-},{"./services/feature.users":5,"angular":2}],5:[function(require,module,exports){
+module['export'] = UserController;
+
+},{}],5:[function(require,module,exports){
+'use strict';
+
+var app = angular.module('meatlingApp');
+var UserController = require('./controllers/users.controller');
+
+app.service('User', require('./services/users.service'));
+app.controller('UserController', UserController);
+
+},{"./controllers/users.controller":4,"./services/users.service":6}],6:[function(require,module,exports){
 'use strict';
 
 module.exports = function () {
-  var users = [{ 'name': 'yasaman',
-    'timezone': 'PST' }, { 'name': 'yulia',
-    'timezone': 'CEST' }, { 'name': 'aviv',
-    'timezone': 'ADT' }, { 'name': 'nashwa',
-    'timezone': 'EST' }];
+  return function User(name, timezone) {
+    this.name = name;
+    this.timezone = timezone;
+    this.greet = function () {
+      return 'Hello!';
+    };
+  };
 };
 
 },{}]},{},[3]);

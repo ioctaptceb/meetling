@@ -8,6 +8,8 @@ let reload = browserSync.reload;
 import babel from 'gulp-babel';
 import concat from 'gulp-concat';
 import jasmine from 'gulp-jasmine';
+import karma from 'karma';
+let Server = karma.Server;
 
 const config = {
   entryFile: './src/app.js',
@@ -60,4 +62,11 @@ gulp.task('js-exporter', () => {
 gulp.task('jasmine', ['js-exporter'], () => {
   gulp.src('spec/unit/*.js')
     .pipe(jasmine());
+  });
+
+gulp.task('karmunit', ['build-persistant'], () => {
+  new Server({
+    configFile: './karma.conf.js',
+    singleRun: true
+    }, done).start();
   });
