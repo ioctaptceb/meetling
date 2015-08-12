@@ -1,7 +1,5 @@
 # meetling
-Hiya
-
-so this will focus on the project that I did when I first started at bitcrowd. It was my first angular app, and also the first time that I worked with ES6, so there was a lot to know. 
+my first angular app, and also the first time that I work with ES6, so there was a lot to know. 
 
 To start, here were some of my major resources:
 ES6 Boilerplate with babel, browserify: https://github.com/thoughtram/es6-babel-browserify-boilerplate
