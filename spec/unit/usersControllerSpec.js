@@ -1,9 +1,8 @@
 describe('UserController', function() {
   var User,
       controller;
-  
-  beforeEach(module('meatlingApp'));
 
+  beforeEach(module('meatlingApp'));
 
   beforeEach(inject(function(_User_, $controller) {
     User = _User_;
@@ -12,6 +11,6 @@ describe('UserController', function() {
 
   it('should give us a user', function() {
     var vm = controller('UserController');
-    expect(vm.user instanceof User).toBeTruthy();
+    expect(vm.list[0] instanceof User).toBeTruthy();
   });
 });

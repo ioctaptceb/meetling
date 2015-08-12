@@ -9,7 +9,8 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       'dist/app.js',
       'spec/unit/usersServiceSpec.js',
-      'spec/unit/usersControllerSpec.js'
+      'spec/unit/usersControllerSpec.js',
+      'spec/unit/usersDirectiveSpec.js'
         ],
 
     autowatch: true,

@@ -1,11 +1,9 @@
-function Welcome() {
+export default function() {
   return {
     restrict: 'E',
     scope: {
-      person: '='
+      user: '='
     },
-    template: '<span>{{person.greet()}} Welcome</span>'
+    template: '<span>{{user.greet()}} Welcome</span>'
   };
 }
-
-module.export = Welcome;

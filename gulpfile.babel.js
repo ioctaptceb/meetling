@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import browserify from 'browserify';
 import watchify from 'watchify';
 import babelify from 'babelify';
+import rimraf from 'rimraf';
 import source from 'vinyl-source-stream';
 import browserSync from 'browser-sync';
 let reload = browserSync.reload;
@@ -35,7 +36,11 @@ function bundle()  {
     .pipe(gulp.dest(config.outputDir));
 }
 
-gulp.task('build-persistant', () => { bundle(); });
+gulp.task('clean', function(cb) {
+  rimraf(config.outputDir, cb);
+});
+
+gulp.task('build-persistant', ['clean'], () => { return bundle(); });
 
 gulp.task('build', ['build-persistant'], () => { process.exit(0); });
 
@@ -45,7 +50,7 @@ gulp.task('watch', ['build-persistant'], () => {
       baseDir: config.baseDir
     }
   });
-  
+
   getBundler().on('update', () => {
     gulp.start('build-persistant');
   });

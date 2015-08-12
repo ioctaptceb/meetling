@@ -1,9 +1,13 @@
-function UserController(User) {
-  var vm = this;
-  vm.name = {};
-  vm.user = new User('aviv', 'ADT');
+function UserController(UsersService) {
+  let vm = this;
+
+  vm.list = UsersService.list;
+
+  vm.add = () => {
+    UsersService.add(vm.name, vm.timezone);
+  };
 }
 
-UserController.$inject = ['User'];
+UserController.$inject = ['UsersService'];
 
-module.export = UserController;
+export default UserController;

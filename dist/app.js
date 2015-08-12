@@ -28375,39 +28375,89 @@ var meatling = angular.module('meatlingApp', []);
 
 require('./main.js');
 
-},{"./main.js":5,"angular":2}],4:[function(require,module,exports){
+},{"./main.js":6,"angular":2}],4:[function(require,module,exports){
 'use strict';
 
-function UserController(User) {
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+function UserController(UsersService) {
   var vm = this;
-  vm.name = {};
-  vm.user = new User('aviv', 'ADT');
+
+  vm.list = UsersService.list;
+
+  vm.add = function () {
+    UsersService.add(vm.name, vm.timezone);
+  };
 }
 
-UserController.$inject = ['User'];
+UserController.$inject = ['UsersService'];
 
-module['export'] = UserController;
+exports['default'] = UserController;
+module.exports = exports['default'];
 
 },{}],5:[function(require,module,exports){
 'use strict';
 
-var app = angular.module('meatlingApp');
-var UserController = require('./controllers/users.controller');
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 
-app.service('User', require('./services/users.service'));
-app.controller('UserController', UserController);
-
-},{"./controllers/users.controller":4,"./services/users.service":6}],6:[function(require,module,exports){
-'use strict';
-
-module.exports = function () {
-  return function User(name, timezone) {
-    this.name = name;
-    this.timezone = timezone;
-    this.greet = function () {
-      return 'Hello!';
-    };
+exports['default'] = function () {
+  return {
+    restrict: 'E',
+    scope: {
+      user: '='
+    },
+    template: '<span>{{user.greet()}} Welcome</span>'
   };
 };
+
+module.exports = exports['default'];
+
+},{}],6:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _controllersUsersController = require('./controllers/users.controller');
+
+var _controllersUsersController2 = _interopRequireDefault(_controllersUsersController);
+
+var _directivesUsersDirective = require('./directives/users.directive');
+
+var _directivesUsersDirective2 = _interopRequireDefault(_directivesUsersDirective);
+
+var _servicesUsersService = require('./services/users.service');
+
+var _servicesUsersService2 = _interopRequireDefault(_servicesUsersService);
+
+var app = angular.module('meatlingApp');
+
+app.service('UsersService', _servicesUsersService2['default']);
+app.controller('UserController', _controllersUsersController2['default']);
+app.directive('welcome', _directivesUsersDirective2['default']);
+
+},{"./controllers/users.controller":4,"./directives/users.directive":5,"./services/users.service":7}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+exports['default'] = function () {
+  var usersService = this;
+  usersService.list = [{
+    'name': 'xxxxxx',
+    'timezone': 'xxxxxxx'
+  }];
+
+  console.log(usersService.list);
+  usersService.add = function (name, timezone) {
+    usersService.list.push({ name: name, timezone: timezone });
+  };
+};
+
+module.exports = exports['default'];
 
 },{}]},{},[3]);
