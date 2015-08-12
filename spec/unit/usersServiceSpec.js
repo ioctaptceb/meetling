@@ -1,17 +1,18 @@
-describe('User', function() {
+describe('UsersService', function() {
 
-  var User;
+  var user;
   beforeEach(module('meatlingApp'));
-  beforeEach(inject(function(_User_) {
-    User = _User_;
+  beforeEach(inject(function(_UsersService_) {
+    user = _UsersService_;
   }));
 
   describe('Constructor', function() {
 
     it('assigns a name and a timezone', function() {
-      testUser = new User('yulia', 'CEST');
-      expect(testUser.name).toEqual('yulia');
-      expect(testUser.timezone).toEqual('CEST');
+      testUser = user.list;
+      user.add('yulia', 'CEST');
+      expect(testUser[1].name).toEqual('yulia');
+      expect(testUser[1].timezone).toEqual('CEST');
     });
 
   });

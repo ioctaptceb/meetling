@@ -1,17 +1,17 @@
 describe('angularjs homepage todolist', function() {
   it('should add a todo', function() {
-    browser.get('https://angularjs.org');
+    browser.get('http://localhost:3000');
 
-    element(by.model('todoList.todoText')).sendKeys('write first protractor test');
-    element(by.css('[value="add"]')).click();
+    element(by.model('users.name')).sendKeys('new name');
+    element(by.model('users.timezone')).sendKeys('timezone');
+    element(by.css('[value="sumbit"]')).click();
+    element(by.model('users.name')).sendKeys('new name');
+    element(by.model('users.timezone')).sendKeys('timezone');
+    element(by.css('[value="sumbit"]')).click();
 
-    var todoList = element.all(by.repeater('todo in todoList.todos'));
-    expect(todoList.count()).toEqual(3);
-    expect(todoList.get(2).getText()).toEqual('write first protractor test');
+    var user = element.all(by.repeater('user in users.list'));
+    expect(user.get(1).getText()).toEqual('new name timezone Hello! Welcome');
+    expect(user.count()).toEqual(3);
 
-    //you wrote your first test, cross it off the list
-    todoList.get(2).element(by.css('input')).click();
-    var completedAmount = element.all(by.css('.done-true'));
-    expect(completedAmount.count()).toEqual(2);
   });
 });

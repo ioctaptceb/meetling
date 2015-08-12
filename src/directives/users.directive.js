@@ -4,6 +4,6 @@ export default function() {
     scope: {
       user: '='
     },
-    template: '<span>{{user.greet()}} Welcome</span>'
+    template: '<span>{{user.greet}} Welcome</span>'
   };
 }

@@ -37,7 +37,7 @@ function bundle()  {
 }
 
 gulp.task('clean', function(cb) {
-  rimraf(config.outputDir, cb);
+  return rimraf(config.outputDir, cb);
 });
 
 gulp.task('build-persistant', ['clean'], () => { return bundle(); });

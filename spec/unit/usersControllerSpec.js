@@ -1,16 +1,18 @@
 describe('UserController', function() {
-  var User,
+  var user,
       controller;
 
   beforeEach(module('meatlingApp'));
 
-  beforeEach(inject(function(_User_, $controller) {
-    User = _User_;
+  beforeEach(inject(function(_UsersService_, $controller) {
+    user = _UsersService_;
     controller = $controller;
   }));
 
   it('should give us a user', function() {
     var vm = controller('UserController');
-    expect(vm.list[0] instanceof User).toBeTruthy();
+    // add a user as dummy data
+    vm.add('aviv','ADT');
+    expect(typeof vm.list[0] == 'object').toBeTruthy();
   });
 });

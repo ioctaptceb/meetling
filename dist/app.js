@@ -28409,7 +28409,7 @@ exports['default'] = function () {
     scope: {
       user: '='
     },
-    template: '<span>{{user.greet()}} Welcome</span>'
+    template: '<span>{{user.greet}} Welcome</span>'
   };
 };
 
@@ -28445,19 +28445,61 @@ Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-exports['default'] = function () {
-  var usersService = this;
-  usersService.list = [{
-    'name': 'xxxxxx',
-    'timezone': 'xxxxxxx'
-  }];
-
-  console.log(usersService.list);
-  usersService.add = function (name, timezone) {
-    usersService.list.push({ name: name, timezone: timezone });
+var _createClass = (function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ('value' in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
   };
-};
+})();
 
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+function UsersService() {
+  var usersService = this;
+  usersService.list = [];
+
+  usersService.add = function (name, timezone) {
+    usersService.list.push(new User(name, timezone));
+  };
+  //dummy data
+  usersService.add('aviv', 'adt');
+}
+
+var User = (function () {
+  function User(name, timezone) {
+    _classCallCheck(this, User);
+
+    this.id = 0;
+    this.name = name;
+    this.timezone = timezone;
+    this.greet = User.greet('Hello!');
+    this.friends = [];
+    this.meatable = false;
+    this.meatable_time = [];
+  }
+
+  _createClass(User, null, [{
+    key: 'greet',
+    value: function greet(value) {
+      if (value == 'Hello!') {
+        return value;
+      } else {
+        return 'hi';
+      }
+    }
+  }]);
+
+  return User;
+})();
+
+exports['default'] = UsersService;
 module.exports = exports['default'];
 
 },{}]},{},[3]);
