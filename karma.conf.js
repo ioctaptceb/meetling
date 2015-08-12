@@ -8,9 +8,7 @@ module.exports = function(config) {
       'node_modules/angular-route/angular-route.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'dist/app.js',
-      'spec/unit/usersServiceSpec.js',
-      'spec/unit/usersControllerSpec.js',
-      'spec/unit/usersDirectiveSpec.js'
+      'src/**/*spec.js',
         ],
 
     autowatch: true,

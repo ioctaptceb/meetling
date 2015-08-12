@@ -28370,12 +28370,40 @@ module.exports = angular;
 },{"./angular":1}],3:[function(require,module,exports){
 'use strict';
 
-var angular = require('angular');
-var meatling = angular.module('meatlingApp', []);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _angular = require('angular');
+
+var _angular2 = _interopRequireDefault(_angular);
+
+var meatling = _angular2['default'].module('meetling', []);
 
 require('./main.js');
 
-},{"./main.js":6,"angular":2}],4:[function(require,module,exports){
+},{"./main.js":4,"angular":2}],4:[function(require,module,exports){
+'use strict';
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _usersUsersController = require('./users/users.controller');
+
+var _usersUsersController2 = _interopRequireDefault(_usersUsersController);
+
+var _usersUsersDirective = require('./users/users.directive');
+
+var _usersUsersDirective2 = _interopRequireDefault(_usersUsersDirective);
+
+var _usersUsersService = require('./users/users.service');
+
+var _usersUsersService2 = _interopRequireDefault(_usersUsersService);
+
+var app = angular.module('meetling');
+
+app.service('UsersService', _usersUsersService2['default']);
+app.controller('UserController', _usersUsersController2['default']);
+app.directive('welcome', _usersUsersDirective2['default']);
+
+},{"./users/users.controller":5,"./users/users.directive":6,"./users/users.service":7}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -28396,7 +28424,7 @@ UserController.$inject = ['UsersService'];
 exports['default'] = UserController;
 module.exports = exports['default'];
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -28415,51 +28443,16 @@ exports['default'] = function () {
 
 module.exports = exports['default'];
 
-},{}],6:[function(require,module,exports){
-'use strict';
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _controllersUsersController = require('./controllers/users.controller');
-
-var _controllersUsersController2 = _interopRequireDefault(_controllersUsersController);
-
-var _directivesUsersDirective = require('./directives/users.directive');
-
-var _directivesUsersDirective2 = _interopRequireDefault(_directivesUsersDirective);
-
-var _servicesUsersService = require('./services/users.service');
-
-var _servicesUsersService2 = _interopRequireDefault(_servicesUsersService);
-
-var app = angular.module('meatlingApp');
-
-app.service('UsersService', _servicesUsersService2['default']);
-app.controller('UserController', _controllersUsersController2['default']);
-app.directive('welcome', _directivesUsersDirective2['default']);
-
-},{"./controllers/users.controller":4,"./directives/users.directive":5,"./services/users.service":7}],7:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-var _createClass = (function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ('value' in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-  };
-})();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 function UsersService() {
   var usersService = this;

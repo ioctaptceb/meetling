@@ -1,7 +1,7 @@
-let app = angular.module('meatlingApp');
-import UserController from './controllers/users.controller';
-import WelcomeMessage from './directives/users.directive';
-import UsersService from './services/users.service';
+let app = angular.module('meetling');
+import UserController from './users/users.controller';
+import WelcomeMessage from './users/users.directive';
+import UsersService from './users/users.service';
 
 app.service('UsersService', UsersService);
 app.controller('UserController', UserController);
