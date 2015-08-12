@@ -28385,7 +28385,9 @@ require('./main.js');
 },{"./main.js":4,"angular":2}],4:[function(require,module,exports){
 'use strict';
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { 'default': obj };
+}
 
 var _usersUsersController = require('./users/users.controller');
 
@@ -28399,13 +28401,74 @@ var _usersUsersService = require('./users/users.service');
 
 var _usersUsersService2 = _interopRequireDefault(_usersUsersService);
 
+var _servicesAuthenticationService = require('./services/authentication.service');
+
+var _servicesAuthenticationService2 = _interopRequireDefault(_servicesAuthenticationService);
+
 var app = angular.module('meetling');
 
+app.factory('AuthenticationService', _servicesAuthenticationService2['default']);
 app.service('UsersService', _usersUsersService2['default']);
 app.controller('UserController', _usersUsersController2['default']);
 app.directive('welcome', _usersUsersDirective2['default']);
 
-},{"./users/users.controller":5,"./users/users.directive":6,"./users/users.service":7}],5:[function(require,module,exports){
+},{"./services/authentication.service":5,"./users/users.controller":6,"./users/users.directive":7,"./users/users.service":8}],5:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService'];
+
+function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService) {
+  var service = {};
+
+  service.login = login;
+  service.setCredentials = setCredentials;
+  service.clearCredentials = clearCredentials;
+
+  return service;
+
+  function login(username, password, callback) {
+    $timeout(function () {
+      var response = undefined;
+      UserService.getByUserName(username).then(function (user) {
+        if (user !== null && user.password === password) {
+          response = { success: true };
+        } else {
+          response = { success: false, message: 'Username or Password is incorrect' };
+        }
+        callback(response);
+      });
+    }, 1000);
+  }
+
+  function setCredentials(username, password) {
+    // TODO: add Base64 encoding here
+    var authdata = username + ':' + password;
+
+    $rootScope.globals = {
+      currentUser: {
+        username: username,
+        authdata: authdata
+      }
+    };
+
+    $http.defaults.headers.common.Authorization = 'Basic ' + authdata;
+    $cookieStore.put('globals', $rootScope.globals);
+  }
+
+  function clearCredentials() {
+    $rootScope.globals = {};
+    $cookieStore.remove('globals');
+    $http.defaults.headers.common.Authorization = 'Basic ';
+  }
+}
+
+exports['default'] = AuthenticationService;
+module.exports = exports['default'];
+
+},{}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -28421,12 +28484,12 @@ function UserController(UsersService) {
   };
 }
 
-UserController.$inject = ['UsersService'];
+UserController.$inject = ['UsersService', 'AuthenticationService'];
 
 exports['default'] = UserController;
 module.exports = exports['default'];
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -28445,7 +28508,7 @@ exports['default'] = function () {
 
 module.exports = exports['default'];
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {

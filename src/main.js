@@ -2,7 +2,9 @@ let app = angular.module('meetling');
 import UserController from './users/users.controller';
 import WelcomeMessage from './users/users.directive';
 import UsersService from './users/users.service';
+import AuthenticationService from './services/authentication.service';
 
+app.factory('AuthenticationService', AuthenticationService);
 app.service('UsersService', UsersService);
 app.controller('UserController', UserController);
 app.directive('welcome', WelcomeMessage);

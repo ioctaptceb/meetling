@@ -8,6 +8,6 @@ function UserController(UsersService) {
   };
 }
 
-UserController.$inject = ['UsersService'];
+UserController.$inject = ['UsersService', 'AuthenticationService'];
 
 export default UserController;

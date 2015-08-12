@@ -1,4 +1,6 @@
-function AuthenticationService() {
+AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService'];
+
+function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService) {
   let service = {};
 
   service.login = login;
@@ -44,3 +46,5 @@ function AuthenticationService() {
   }
 }
 
+
+export default AuthenticationService;
