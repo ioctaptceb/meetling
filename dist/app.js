@@ -28378,12 +28378,9 @@ var _angular = require('angular');
 
 var _angular2 = _interopRequireDefault(_angular);
 
-require('./main.js');
+var meetling = _angular2['default'].module('meetling', []);
 
-var login = _angular2['default'].module('meetling.login', []);
-var slabs = _angular2['default'].module('meetling.slabs', []);
-var cuttingBoard = _angular2['default'].module('meetling.cuttingboard', ['meetling.slabs', 'meetling.login']);
-var meetling = _angular2['default'].module('meetling', ['meetling.slabs', 'meetling.cuttingboard', 'meetling.login']);
+require('./main.js');
 
 },{"./main.js":4,"angular":2}],4:[function(require,module,exports){
 'use strict';
