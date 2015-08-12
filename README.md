@@ -32,12 +32,17 @@ Meetling - a way to set up meetings with people, anywhere in the world, with aut
 
 The assumptions - 
 -users will register and can register their friends
+
 -maybe later there will be something more
 
 The sketch: 
-Login page - enter details or register
-Cuttingboard - same section as login -- but is also the drag and drop area for meetlings to be arranged
-Meetshop - sidebar / slidy that contains a list of friends (can be added to)
-Meetbin - sidebar / slidy that contains a calendar with times and meetlings
+###########
+*Login page - enter details or register
+
+*Cuttingboard - same section as login -- but is also the drag and drop area for meetlings to be arranged
+
+*Meetshop - sidebar / slidy that contains a list of friends (can be added to)
+
+*Meetbin - sidebar / slidy that contains a calendar with times and meetlings
 
 actual sketch will eventually follow
