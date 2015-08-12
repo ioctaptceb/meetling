@@ -22,19 +22,19 @@ authentication http://jasonwatmore.com/post/2015/03/10/AngularJS-User-Registrati
 
 ..more that will be added over time
 
-The task:
+###The task:
 learn angular while also learning es6, and adhering to the styleguide.
 
-The app: 
+###The app: 
 Meetling - a way to set up meetings with people, anywhere in the world, with automatic time synchronization. and some sort of light algorithm of when they are probably asleep, probably at work, etc.
 
-The assumptions - 
+###The assumptions - 
 -users will register and can register their friends
 
 -maybe later there will be something more
 
-The sketch: 
-###########
+###The sketch: 
+
 *Login page - enter details or register
 
 *Cuttingboard - same section as login -- but is also the drag and drop area for meetlings to be arranged
@@ -44,3 +44,8 @@ The sketch:
 *Meetbin - sidebar / slidy that contains a calendar with times and meetlings
 
 actual sketch will eventually follow
+
+##TODO:
+- authentication
+- viewz
+- stuff
