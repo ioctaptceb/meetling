@@ -1,6 +1,4 @@
-AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService'];
-
-function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService) {
+function AuthenticationService($http, $cookies, $rootScope, $timeout, UsersService) {
   let service = {};
 
   service.login = login;
@@ -12,7 +10,7 @@ function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserSe
   function login(username, password, callback) {
     $timeout(function () {
       let response;
-      UserService.getByUserName(username)
+      UsersService.getByUserName(username)
         .then(function(user) {
           if (user !== null && user.password === password) {
             response = { success: true };
@@ -36,15 +34,16 @@ function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserSe
     };
 
     $http.defaults.headers.common.Authorization = 'Basic ' + authdata;
-    $cookieStore.put('globals', $rootScope.globals);
+    $cookies.put('globals', $rootScope.globals);
   }
 
   function clearCredentials() {
     $rootScope.globals = {};
-    $cookieStore.remove('globals');
+    $cookies.remove('globals');
     $http.defaults.headers.common.Authorization = 'Basic ';
   }
 }
 
+AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UsersService'];
 
 export default AuthenticationService;
